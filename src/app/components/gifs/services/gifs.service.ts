@@ -19,14 +19,18 @@ export class GifsService {
   get getHistorial():string[]{
     return [...this._historial];
   };
+  
+  constructor( private http:HttpClient ) {
+    this._historial = JSON.parse( localStorage.getItem("historial")! ) || [];
 
-  constructor( private http:HttpClient ) {}
+  }
     
   setHistorial( termino : string = ""):void {
     termino = termino.trim().toLocaleLowerCase();
     if(!this._historial.includes(termino)){
       this._historial.unshift(termino);
       this._historial = this._historial.splice(0,10);
+      localStorage.setItem("historial", JSON.stringify(this._historial));
       console.log(this._historial);
     }
 
