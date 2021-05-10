@@ -17,5 +17,10 @@ export class SidebarComponent implements OnInit {
   
   ngOnInit(): void {
   }
+
+  textValue(textValue: string){
+    // console.log(textValue);
+    this.GifsService.setHistorial(textValue);
+  }
   
 }
